@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CARLOS-JR Store | Soluções Técnicas & Software</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#070b14;--bg2:#0d1424;--card:#111a2e;--line:#22304d;--txt:#e8edf7;--mut:#93a0ba;--blue:#2f7bff;--blue2:#00d1ff;--silver:#c5cddc;--gold:#e8c26a;--r:18px;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f6fc;--bg2:#e7edf8;--card:#fff;--line:#d3dcee;--txt:#0e1730;--mut:#55627e;--silver:#4a5670;--gold:#9a7412}}
+:root[data-theme="dark"]{color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--txt);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--blue2);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;padding:12px 0;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:34px;height:34px}
+.logo b{display:block;font-weight:800;font-size:17px;letter-spacing:.5px;line-height:1.1}
+.logo small{display:block;color:var(--mut);font-size:11px}
+.search{flex:1;min-width:200px;order:3;position:relative}
+.search input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:11px 16px 11px 40px;color:var(--txt);font:inherit;font-size:14px}
+.search input:focus{border-color:var(--blue);outline:none}
+.search span{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--mut)}
+nav{display:flex;gap:4px;margin-left:auto}
+nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--mut);transition:.2s}
+nav a:hover{color:var(--txt);background:var(--card)}
+@media(min-width:900px){.search{order:0;max-width:340px}}
+.hero{position:relative;overflow:hidden;padding:64px 0 56px;background:radial-gradient(900px 380px at 80% -10%,rgba(47,123,255,.28),transparent 70%),var(--bg)}
+.hero svg.ribbon{position:absolute;right:-60px;bottom:-20px;width:620px;max-width:90%;opacity:.55;pointer-events:none}
+.hero .in{position:relative;max-width:640px}
+h1{font-size:clamp(34px,7vw,58px);line-height:1.05;font-weight:800;letter-spacing:-1.5px}
+.hero p{color:var(--mut);margin:16px 0 26px;font-size:17px;max-width:520px}
+.feat{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(47,123,255,.2),rgba(0,209,255,.06));border:1px solid var(--line);border-radius:var(--r);padding:14px;max-width:520px}
+.feat .ic{width:60px;height:60px;font-size:30px}
+.feat div{flex:1;min-width:0}
+.feat small{color:var(--gold);font-weight:700;font-size:12px}
+.feat strong{display:block;font-size:17px}
+.btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:0;border-radius:999px;padding:10px 20px;font-weight:700;font-size:14px;transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(47,123,255,.4)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+.btn.ghost:hover{border-color:var(--silver);box-shadow:none}
+section{padding:44px 0}
+h2{font-size:clamp(24px,4vw,32px);letter-spacing:-.6px;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:22px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:22px}
+.chip{white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;color:var(--mut);transition:.2s}
+.chip:hover{color:var(--txt);border-color:var(--silver)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.app{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:transform .2s,border-color .2s}
+.app:hover{transform:translateY(-3px);border-color:var(--blue)}
+.top{display:flex;gap:14px;align-items:center}
+.ic{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font-size:32px;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);transition:transform .2s}
+.app:hover .ic{transform:scale(1.07) rotate(-3deg)}
+.top h3{font-size:16px;line-height:1.25}
+.cat{color:var(--mut);font-size:13px}
+.app p{color:var(--mut);font-size:14px;flex:1}
+.meta{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:12px;color:var(--silver)}
+.app .btn{width:100%;padding:11px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px 0}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.pil{border-left:3px solid var(--blue);padding:4px 0 4px 18px}
+.pil h3{margin-bottom:6px}
+.pil p{color:var(--mut);font-size:15px}
+#sobre p{color:var(--mut);max-width:680px}
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:36px 0 28px;margin-top:20px;color:var(--mut);font-size:14px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-bottom:24px}
+footer h4{color:var(--txt);margin-bottom:8px}
+footer a{display:block;padding:3px 0}
+footer a:hover{color:var(--txt)}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(3,6,12,.72);backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;padding:0}
+.modal.open{display:flex}
+.sheet{background:var(--card);border:1px solid var(--line);width:100%;max-width:760px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:22px;animation:up .25s ease}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@media(min-width:700px){.modal{align-items:center;padding:20px}.sheet{border-radius:24px}}
+.mh{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+.x{margin-left:auto;background:var(--bg2);border:1px solid var(--line);border-radius:50%;width:38px;height:38px;align-self:flex-start}
+.shots{display:flex;gap:12px;overflow-x:auto;margin-bottom:18px;padding-bottom:6px}
+.shot{flex:none;width:130px;height:230px;border-radius:20px;border:2px solid var(--line);background:var(--bg);padding:10px;display:flex;flex-direction:column;gap:7px}
+.shot i{display:block;border-radius:6px;background:var(--line);height:10px}
+.shot i.h{height:46px;border-radius:10px}
+.shot i.a{background:var(--blue);width:60%}
+.cols{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:620px){.cols{grid-template-columns:1fr 1fr}}
+.sheet h4{margin-bottom:6px}
+.sheet ul{padding-left:18px;color:var(--mut);font-size:14px}
+.sheet li{margin:3px 0}
+.dl{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--txt);color:var(--bg);padding:12px 20px;border-radius:12px;font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:200;max-width:90%}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="#inicio" aria-label="CARLOS-JR início">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8c26a"/><stop offset="1" stop-color="#2f7bff"/></linearGradient></defs><path d="M5 14l7 6 8-12 8 12 7-6-3 17H8z" fill="url(#g)"/><rect x="8" y="33" width="24" height="3" rx="1.5" fill="#c5cddc"/></svg>
+    <span><b>CARLOS-JR</b><small>Soluções Técnicas & Software</small></span>
+  </a>
+  <div class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Pesquisar aplicativos ou categorias" aria-label="Pesquisar aplicativos"></div>
+  <nav><a href="#inicio">Início</a><a href="#apps">Aplicativos</a><a href="#sobre">Sobre a Empresa</a><a href="#contato">Suporte</a></nav>
+</div></header>
+
+<main>
+<div class="hero" id="inicio"><div class="wrap">
+  <svg class="ribbon" viewBox="0 0 600 260" aria-hidden="true"><defs><linearGradient id="r" x1="0" x2="1"><stop offset="0" stop-color="#7a3cff"/><stop offset=".5" stop-color="#2f7bff"/><stop offset="1" stop-color="#00d1ff"/></linearGradient></defs><g fill="none" stroke="url(#r)" stroke-width="1.2"><path d="M0 200C120 120 220 260 330 170S520 40 600 90"/><path d="M0 210C120 130 220 270 330 180S520 50 600 100"/><path d="M0 220C120 140 220 280 330 190S520 60 600 110"/><path d="M0 230C120 150 220 290 330 200S520 70 600 120"/><path d="M0 240C120 160 220 300 330 210S520 80 600 130"/><path d="M0 190C120 110 220 250 330 160S520 30 600 80"/></g></svg>
+  <div class="in">
+    <h1>Soluções Tecnológicas em Suas Mãos</h1>
+    <p>O ecossistema de aplicativos CARLOS-JR reúne gestão, projetos técnicos, vendas e comunicação num só lugar. Escolha, instale e comece a usar.</p>
+    <div class="feat">
+      <div class="ic" style="background:linear-gradient(135deg,#2f7bff,#0a3aa8)">📊</div>
+      <div><small>Destaque</small><strong>CARLOS-JR CEO</strong><span class="cat">Painel de gestão do negócio</span></div>
+      <button class="btn" data-dl="0">Baixar Agora</button>
+    </div>
+  </div>
+</div></div>
+
+<section id="apps"><div class="wrap">
+  <h2>Aplicativos</h2>
+  <p class="sub">Os apps CARLOS-JR para Android, prontos para instalar.</p>
+  <div class="filters" id="filters" role="tablist"></div>
+  <div class="grid" id="grid" aria-live="polite"></div>
+</div></section>
+
+<section id="sobre"><div class="wrap">
+  <h2>Por que escolher a CARLOS-JR?</h2>
+  <p class="sub">Tecnologia feita para o dia a dia de quem trabalha.</p>
+  <div class="pillars">
+    <div class="pil"><h3>Segurança garantida</h3><p>Ficheiros verificados antes de cada publicação e dados tratados com cuidado.</p></div>
+    <div class="pil"><h3>Interface intuitiva</h3><p>Apps simples de aprender, pensados para o telemóvel e para o computador.</p></div>
+    <div class="pil"><h3>Suporte técnico dedicado</h3><p>Equipa disponível para ajudar na instalação, uso e atualizações.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer id="contato"><div class="wrap">
+  <div class="fgrid">
+    <div><h4>CARLOS-JR</h4><p>Soluções Técnicas Integradas. Software e serviços técnicos para empresas e famílias.</p></div>
+    <div><h4>Links úteis</h4><a href="#apps">Aplicativos</a><a href="#sobre">Sobre a Empresa</a><a href="#inicio">Voltar ao topo</a></div>
+    <div><h4>Legal</h4><a href="#" data-info="Termos de Uso">Termos de Uso</a><a href="#" data-info="Política de Privacidade">Política de Privacidade</a></div>
+    <div><h4>Contacto</h4><a href="#" data-info="Suporte">Suporte técnico</a><a href="#" data-info="Contacto">Fale connosco</a></div>
+  </div>
+  <p>© 2026 CARLOS-JR. Todos os direitos reservados.</p>
+</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const APPS=[
+{k:"ceo",n:"CARLOS-JR CEO",c:"Gestão & CEO",e:"📊",g:"#7a3cff,#2b1478",s:"7,1 MB",a:"Android 5.0+",d:"Painel CARLOS-JR CEO para acompanhar e gerir o negócio.",p:["Internet","SMS","Notificações","Contas","Estado do telefone","Armazenamento"],f:"CARLOS-JR_CEO"},
+{k:"fr",n:"CARLOSJRFR",c:"Gestão & CEO",e:"💼",g:"#00b894,#006e5a",s:"7,5 MB",a:"Android 5.0+",d:"Aplicativo CARLOS-JR FR para a rotina de trabalho da equipa.",p:["Internet","SMS","Localização","Câmara","Contactos","Notificações","Contas","Lanterna","Estado do telefone","Armazenamento"],f:"CARLOSJRFR"},
+{k:"fatura",n:"FATURA CARLOS-JR",c:"Gestão & CEO",e:"🧾",g:"#2f7bff,#0a3aa8",s:"6,9 MB",a:"Android 5.0+",d:"Emissão e consulta de faturas CARLOS-JR, com leitura de códigos pela câmara.",p:["Internet","Localização","Câmara","Lanterna","Armazenamento"],f:"FATURA_CARLOS-JR"},
+{k:"notificador",n:"Notificador",c:"Comunicação / Chat",e:"🔔",g:"#00d1ff,#0066aa",s:"7,7 MB",a:"Android 5.0+",d:"Notificador CARLOS-JR: recebe e trata notificações e mensagens.",p:["Internet","SMS","Localização","Notificações","Contas","Estado do telefone","Armazenamento"],f:"Notificador"},
+{k:"livro",n:"365 DIAS DE RIQUEZA",c:"Livros & Jogos",e:"📘",g:"#e8c26a,#a37a12",s:"7,3 MB",a:"Android 5.0+",d:"365 Dias para a Riqueza e Alta Performance, o livro em formato de aplicativo.",p:["Internet","Localização","Armazenamento"],f:"365_Dias_de_Riqueza"},
+{k:"danger",n:"Carlos Jr Danger",c:"Livros & Jogos",e:"🎮",g:"#ff7a2f,#b33a00",s:"5,1 MB",a:"Android 7.0+",d:"Jogo Carlos Jr Danger (versão de teste, debug).",p:["Internet"],f:"Carlos-Jr-Danger"},
+{k:"aliex",n:"Aliexcarlos",c:"Ferramentas",e:"🛍️",g:"#ff4d6d,#a3142f",s:"6,1 MB",a:"Android 6.0+",d:"Aplicativo Aliexcarlos.",p:["Internet","Armazenamento"],f:"Aliexcarlos"},
+{k:"bolred",n:"Carlos Bol Red",c:"Ferramentas",e:"🔴",g:"#c5cddc,#5a6580",s:"7,2 MB",a:"Android 5.0+",d:"Aplicativo Carlos Bol Red.",p:["Internet","Armazenamento"],f:"Carlos_Bol_Red"}
+];
+const IDS={aliex:"228b1995f52085eafd64499673b73edf",danger:"bcb31d7cbf73631117fe57e2a6a22eeb",notificador:"1aca0b539327ec81a8c1a6c8b1ad639d",fr:"20af356e4df23fe39a34c85352440d54",ceo:"46ffe4ec5a3ef7e19a87d728aa3479fb",fatura:"c2c614684ef1c500b2e5cc8e1750ac06",livro:"907602cdea30f9e776735405bfca89d7",bolred:"eaa131baa057b1ad13e31e0047a4a20d"};
+const CATS=["Todos","Gestão & CEO","Comunicação / Chat","Livros & Jogos","Ferramentas"];
+let cat="Todos",term="";
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("on"),2600)}
+function filters(){$("#filters").innerHTML=CATS.map(c=>`<button class="chip${c===cat?" on":""}" data-c="${esc(c)}" role="tab" aria-selected="${c===cat}">${esc(c)}</button>`).join("")}
+function render(){
+  const q=term.trim().toLowerCase();
+  const list=APPS.map((a,i)=>({a,i})).filter(({a})=>(cat==="Todos"||a.c===cat)&&(!q||(a.n+" "+a.c+" "+a.d).toLowerCase().includes(q)));
+  $("#grid").innerHTML=list.length?list.map(({a,i})=>`<article class="app" data-i="${i}" tabindex="0">
+  <div class="top"><div class="ic" style="background:linear-gradient(135deg,${a.g})">${a.e}</div><div><h3>${a.n}</h3><span class="cat">${a.c}</span></div></div>
+  <p>${a.d}</p><div class="meta"><span class="tag">${a.s}</span><span class="tag">APK</span><span class="tag">${a.a}</span></div>
+  <button class="btn" data-dl="${i}">Baixar</button></article>`).join(""):`<p class="empty">Nenhum aplicativo encontrado para “${esc(term)}”. Tente outro nome ou escolha Todos.</p>`;
+}
+let busy=false;
+async function dl(i){
+  if(busy)return;const a=APPS[i],id=IDS[a.k];
+  if(!id||id.startsWith("__")){toast("Ficheiro ainda não disponível");return}
+  const dls=await (window.claude&&claude.use?claude.use("downloads"):null);
+  if(!dls){toast("Download indisponível neste visualizador. Abra o link da loja no Claude.");return}
+  busy=true;toast("A preparar "+a.n+"…");
+  try{
+    const r=await fetch("/_blob/"+id);if(!r.ok)throw new Error("fetch");
+    const bin=atob((await r.text()).trim());const u=new Uint8Array(bin.length);
+    for(let j=0;j<bin.length;j++)u[j]=bin.charCodeAt(j);
+    await dls.save({filename:a.f+".zip",data:u});
+    toast("Guardado. Extraia o .zip e instale o .apk");
+  }catch(e){toast(e&&e.code==="declined"?"Download cancelado":"Não foi possível descarregar. Tente novamente.")}
+  busy=false;
+}
+function open(i){
+  const a=APPS[i];
+  $("#sheet").innerHTML=`<div class="mh"><div class="ic" style="background:linear-gradient(135deg,${a.g})">${a.e}</div><div><h3 id="mt" style="font-size:20px">${a.n}</h3><span class="cat">${a.c} · APK · ${a.s}</span></div><button class="x" aria-label="Fechar" data-x>✕</button></div>
+  <p style="color:var(--mut);margin-bottom:16px">${a.d}</p>
+  <div class="cols"><div><h4>Permissões que o app pede</h4><ul>${a.p.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  <div><h4>Requisitos</h4><ul><li>${a.a}</li><li>Ficheiro de ${a.s}</li></ul>
+  <h4 style="margin-top:14px">Como instalar</h4><ul><li>Toque em Baixar e guarde o .zip</li><li>Extraia o .zip para obter o .apk</li><li>Abra o .apk e permita instalar apps de fontes desconhecidas</li></ul></div></div>
+  <div class="dl"><button class="btn" data-dl="${i}">Baixar APK (.zip)</button><button class="btn ghost" data-x>Fechar</button></div>`;
+  $("#modal").classList.add("open");
+}
+function close(){$("#modal").classList.remove("open")}
+document.addEventListener("click",e=>{
+  const d=e.target.closest("[data-dl]");if(d){e.stopPropagation();dl(+d.dataset.dl);return}
+  if(e.target.closest("[data-x]")||e.target===$("#modal")){close();return}
+  const c=e.target.closest("[data-c]");if(c){cat=c.dataset.c;filters();render();return}
+  const ap=e.target.closest(".app");if(ap){open(+ap.dataset.i);return}
+  const inf=e.target.closest("[data-info]");if(inf){e.preventDefault();toast(inf.dataset.info+": página em preparação")}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")close();
+  if(e.key==="Enter"&&e.target.classList.contains("app"))open(+e.target.dataset.i);
+});
+$("#q").addEventListener("input",e=>{term=e.target.value;render()});
+filters();render();
+</script>
+</body>
+</html>
